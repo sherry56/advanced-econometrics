@@ -56,7 +56,7 @@ body {
 
 /* Random section */
 .random-section {
-  margin: 4px 10px 10px; border: 1px solid #334155; border-radius: 8px; overflow: hidden;
+  margin: 8px 10px 4px; border: 1px solid #334155; border-radius: 8px; overflow: hidden;
 }
 .random-label {
   padding: 7px 14px; background: #0f172a; font-size: 11px;
@@ -357,32 +357,28 @@ body {
     <p>章节练习 · 110题</p>
   </div>
 
-  <div style="padding:8px 10px 4px">
-    <button class="ch-mode-btn active" id="btn-chapter-mode" onclick="setChapterMode()">
-      📚 章节练习
-    </button>
+  <div style="padding:6px 10px 2px;font-size:11px;color:#64748b;letter-spacing:.05em;text-transform:uppercase;font-weight:700;">
+    📚 章节练习
   </div>
-
-  <div class="random-section">
-    <div class="random-label">随机 40 题</div>
-    <div class="random-btns">
-      <button class="rand-btn" id="btn-practice" onclick="startRandom('practice')">
-        <span class="rand-icon">✏️</span>
-        <span>练习模式</span>
-        <span class="rand-sub">答后即见答案</span>
-      </button>
-      <button class="rand-btn" id="btn-test" onclick="startRandom('test')">
-        <span class="rand-icon">📝</span>
-        <span>测试模式</span>
-        <span class="rand-sub">结束后统一评分</span>
-      </button>
-    </div>
-  </div>
-
   <div id="chapter-list"></div>
 
-  <div style="padding:8px 0;border-top:1px solid #334155;">
-    <div id="wrong-btn" onclick="startWrong()">
+  <div style="border-top:1px solid #334155;">
+    <div class="random-section">
+      <div class="random-label">随机 40 题</div>
+      <div class="random-btns">
+        <button class="rand-btn" id="btn-practice" onclick="startRandom('practice')">
+          <span class="rand-icon">✏️</span>
+          <span>练习模式</span>
+          <span class="rand-sub">答后即见答案</span>
+        </button>
+        <button class="rand-btn" id="btn-test" onclick="startRandom('test')">
+          <span class="rand-icon">📝</span>
+          <span>测试模式</span>
+          <span class="rand-sub">结束后统一评分</span>
+        </button>
+      </div>
+    </div>
+    <div id="wrong-btn" onclick="startWrong()" style="margin:8px 10px;border-radius:8px;">
       <span>📕 错题本</span>
       <span id="wrong-count" class="zero">0</span>
     </div>
