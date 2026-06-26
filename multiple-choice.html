@@ -316,8 +316,20 @@ body {
 /* ── Mobile ── */
 @media (max-width: 768px) {
   body { display: block; }
-  #sidebar { transform: translateX(-100%); width: 280px; }
+  #sidebar {
+    transform: translateX(-100%);
+    width: 280px;
+    height: 100dvh;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
   #sidebar.open { transform: translateX(0); }
+  #chapter-list {
+    flex: 0 0 auto;
+    max-height: none;
+    overflow: visible;
+  }
   #main { margin-left: 0; }
   #menu-btn { display: flex; }
   #topbar { padding: 10px 14px; gap: 8px; }
@@ -843,6 +855,17 @@ function selectOption(letter) {
   document.getElementById('btn-confirm').disabled = false;
 }
 
+function scrollQuestionTop() {
+  requestAnimationFrame(() => {
+    const quiz = document.getElementById('quiz-screen');
+    const topbar = document.getElementById('topbar');
+    if (!quiz || quiz.classList.contains('hidden')) return;
+    const offset = (topbar ? topbar.offsetHeight : 0) + 12;
+    const targetTop = Math.max(0, quiz.getBoundingClientRect().top + window.pageYOffset - offset);
+    window.scrollTo({ top: targetTop, behavior: 'smooth' });
+  });
+}
+
 // ── Confirm answer ──
 const CORRECT_MSGS = [
   ['🎉', '恭喜你答对了！考试必过！'],
@@ -919,6 +942,7 @@ function navigate(dir) {
   selectedOpt = null;
   currentIdx = next;
   renderQuestion();
+  scrollQuestionTop();
 }
 
 function renderDots() {
