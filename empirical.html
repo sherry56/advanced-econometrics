@@ -48,9 +48,22 @@
     }
 
     .sheet {
+      position: relative;
       background: var(--paper);
       border: 1px solid #e3e8ef;
       box-shadow: 0 18px 42px rgba(31, 41, 55, 0.08);
+    }
+
+    .sheet.model-open {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      align-items: start;
+    }
+
+    .sheet > header,
+    .model-directory,
+    .model-nav {
+      grid-column: 1 / -1;
     }
 
     header {
@@ -98,7 +111,7 @@
       letter-spacing: 0;
     }
 
-    h2.model-title {
+    .model-title {
       margin: 0 0 18px;
       padding: 12px 16px;
       border-left: 0;
@@ -106,6 +119,177 @@
       background: #edf6f4;
       color: #173f3a;
       font-size: 24px;
+    }
+
+    .model-directory {
+      padding: 30px 40px 40px;
+      border-bottom: 1px solid #e7ecf2;
+      background: #ffffff;
+    }
+
+    .model-directory-head {
+      max-width: 760px;
+      margin-bottom: 18px;
+    }
+
+    .model-directory-head h2 {
+      margin-bottom: 8px;
+    }
+
+    .model-directory-head p {
+      color: var(--muted);
+    }
+
+    .model-directory-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .model-card-button {
+      min-height: 132px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfdff;
+      padding: 16px 18px;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .model-card-button:hover {
+      border-color: #9cc8bb;
+      background: #f4faf7;
+    }
+
+    .model-card-no {
+      display: block;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .model-card-title {
+      display: block;
+      margin-top: 6px;
+      color: #173f3a;
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .model-card-desc {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .model-nav {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      padding: 14px 40px;
+      border-bottom: 1px solid #dfe6ee;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+    }
+
+    .model-nav[hidden],
+    .model-directory[hidden],
+    .model-toc[hidden] {
+      display: none;
+    }
+
+    .model-nav button {
+      min-height: 56px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      color: #344054;
+      padding: 8px 10px;
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .model-back {
+      grid-column: 1 / -1;
+      min-height: 36px !important;
+      color: var(--green) !important;
+      font-weight: 700 !important;
+    }
+
+    .model-nav button:hover {
+      border-color: #a9c8be;
+      background: #f7fbf9;
+    }
+
+    .model-nav button.active {
+      border-color: #9cc8bb;
+      background: #edf6f4;
+      color: #173f3a;
+      font-weight: 700;
+    }
+
+    .model-nav-no {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .model-nav-title {
+      display: block;
+      margin-top: 2px;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    section.model-section[hidden] {
+      display: none;
+    }
+
+    section.model-section {
+      grid-column: 1;
+    }
+
+    .model-toc {
+      grid-column: 2;
+      grid-row: 3 / span 100;
+      position: sticky;
+      top: 84px;
+      margin: 26px 28px 0 0;
+      padding: 14px 0 14px 14px;
+      border-left: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .model-toc-title {
+      margin: 0 0 10px;
+      color: #475467;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .model-toc a {
+      display: block;
+      padding: 6px 0 6px 10px;
+      border-left: 2px solid transparent;
+      color: var(--muted);
+      text-decoration: none;
+      line-height: 1.4;
+    }
+
+    .model-toc a:hover {
+      border-left-color: var(--green);
+      color: var(--green);
     }
 
     h2.sub-title {
@@ -285,6 +469,32 @@
         padding-right: 18px;
       }
 
+      .model-nav {
+        grid-template-columns: 1fr;
+        padding: 12px 18px;
+        position: static;
+      }
+
+      .sheet.model-open {
+        display: block;
+      }
+
+      .model-directory {
+        padding: 24px 18px 30px;
+      }
+
+      .model-directory-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .model-toc {
+        display: none;
+      }
+
+      .model-nav button {
+        min-height: 44px;
+      }
+
       h1 {
         font-size: 26px;
       }
@@ -306,11 +516,74 @@
         <p class="eyebrow">高级计量经济学（Ⅱ）· 模拟实证研究题</p>
         <h1>高级计量经济学（Ⅱ）模拟实证研究题复习资料</h1>
         <p class="subtitle">
-          本页参考《高级计量经济学(II)》课件与期末复习材料，按模拟实证研究题的答题顺序整理常用模型。当前先整理面板模型部分，包括基准面板模型和 GMM 动态面板模型；后续可继续补充门限面板、分位数面板、空间面板、微观计量模型和因果推断模型。
+          本页参考《高级计量经济学(II)》课件与期末复习材料，按模拟实证研究题的答题顺序整理常用模型。当前整理面板模型部分，包括基准面板模型、GMM 动态面板模型、面板门限模型、面板分位数模型和空间面板模型；后续可继续补充微观计量模型和因果推断模型。
         </p>
       </header>
 
-      <section>
+      <div class="model-directory" id="modelDirectory">
+        <div class="model-directory-head">
+          <h2>案例分析题模型目录</h2>
+          <p>先按题干关键词判断模型类型，再进入对应模型复习模型设定、Stata 命令、检验和经济含义解释。</p>
+        </div>
+        <div class="model-directory-grid">
+          <button class="model-card-button" type="button" data-model-card="model-1">
+            <span class="model-card-no">模型一</span>
+            <span class="model-card-title">基准面板模型</span>
+            <span class="model-card-desc">双向固定效应、模型选择检验、系数解释与基准回归答题模板。</span>
+          </button>
+          <button class="model-card-button" type="button" data-model-card="model-2">
+            <span class="model-card-no">模型二</span>
+            <span class="model-card-title">GMM 动态面板模型</span>
+            <span class="model-card-desc">差分 GMM、系统 GMM、工具变量、AR 检验与 Sargan 检验。</span>
+          </button>
+          <button class="model-card-button" type="button" data-model-card="model-3">
+            <span class="model-card-no">模型三</span>
+            <span class="model-card-title">面板门限模型</span>
+            <span class="model-card-desc">门限变量、门限值检验、分区间系数解释和非线性影响。</span>
+          </button>
+          <button class="model-card-button" type="button" data-model-card="model-4">
+            <span class="model-card-no">模型四</span>
+            <span class="model-card-title">面板分位数模型</span>
+            <span class="model-card-desc">不同分位点上的异质性影响、分位数命令和结果比较。</span>
+          </button>
+          <button class="model-card-button" type="button" data-model-card="model-5">
+            <span class="model-card-no">模型五</span>
+            <span class="model-card-title">空间面板模型</span>
+            <span class="model-card-desc">空间权重矩阵、SAR/SDM/SEM/SAC、空间溢出和效应分解。</span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="model-nav" aria-label="案例分析题模型切换" hidden>
+        <button class="model-back" type="button" id="backToModels">返回模型目录</button>
+        <button type="button" data-model-target="model-1">
+          <span class="model-nav-no">模型一</span>
+          <span class="model-nav-title">基准面板模型</span>
+        </button>
+        <button type="button" data-model-target="model-2">
+          <span class="model-nav-no">模型二</span>
+          <span class="model-nav-title">GMM 动态面板模型</span>
+        </button>
+        <button type="button" data-model-target="model-3">
+          <span class="model-nav-no">模型三</span>
+          <span class="model-nav-title">面板门限模型</span>
+        </button>
+        <button type="button" data-model-target="model-4">
+          <span class="model-nav-no">模型四</span>
+          <span class="model-nav-title">面板分位数模型</span>
+        </button>
+        <button type="button" data-model-target="model-5">
+          <span class="model-nav-no">模型五</span>
+          <span class="model-nav-title">空间面板模型</span>
+        </button>
+      </nav>
+
+      <aside class="model-toc" id="modelToc" aria-label="当前模型目录" hidden>
+        <p class="model-toc-title">本模型目录</p>
+        <div id="modelTocLinks"></div>
+      </aside>
+
+      <section id="model-1">
         <h2 class="model-title">模型一：基准面板模型</h2>
         <h2 class="sub-title">1.1 整理思路：模拟实证研究题怎么答</h2>
         <p>基准面板模型适用于题目给出“个体 \(i\) - 时间 \(t\)”结构的数据，并要求分析某个核心解释变量 \(x_{it}\) 对被解释变量 \(y_{it}\) 的影响。</p>
@@ -640,7 +913,7 @@ xtreg y x controls i.year, fe vce(cluster id)</code></pre>
         </div>
       </section>
 
-      <section>
+      <section id="model-2">
         <h2 class="model-title">模型二：GMM 动态面板模型</h2>
         <h2 class="sub-title">2.1 什么时候从基准面板转向动态面板</h2>
         <p>GMM 在这里主要指短面板动态面板模型中的差分 GMM 和系统 GMM。它适用于题目明确提示“历史的被解释变量会影响当期被解释变量”，或普通固定效应模型可能存在动态内生性、遗漏重要变量等问题。</p>
@@ -1021,7 +1294,968 @@ xtabond y x controls, lag(1) maxldep(4) twostep vce(robust)</code></pre>
           <p><strong>经济意义：</strong>若滞后项系数 \(\gamma\) 显著为正，说明被解释变量存在动态惯性；若核心解释变量系数 \(\beta_1\) 显著为正，说明 \(x\) 在短期内显著促进 \(y\)。若需要解释长期效应，在 AR(1) 模型中可写为 \(\frac{\beta_1}{1-\gamma}\)。</p>
         </div>
       </section>
+      <section id="model-3">
+        <h1 class="model-title">模型三：面板门限模型</h1>
+        <h2 class="sub-title">3.1 什么时候使用面板门限模型</h2>
+        <p>面板门限模型用于考察核心解释变量对被解释变量的影响是否会随着某个门限变量的水平不同而发生变化。题目中如果出现“非线性影响”“阶段性影响”“超过某一水平后影响增强或减弱”“门限效应”“区间差异”等表述，通常可以考虑门限模型。</p>
+        <div class="note exam">
+          <strong>考场识别：</strong>如果题目不是只问 \(x\) 对 \(y\) 的平均影响，而是问“在低水平和高水平条件下影响是否不同”，就要想到面板门限模型。
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 24%;">关键词</th>
+              <th style="width: 34%;">模型含义</th>
+              <th>答题方向</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>门限效应</td>
+              <td>样本按门限变量 \(q_{it}\) 分为不同区间。</td>
+              <td>估计门限值 \(\gamma\)，比较不同区间的系数。</td>
+            </tr>
+            <tr>
+              <td>非线性影响</td>
+              <td>\(x\) 对 \(y\) 的影响不是固定不变的。</td>
+              <td>检验 \(\beta_1\) 和 \(\beta_2\) 是否存在显著差异。</td>
+            </tr>
+            <tr>
+              <td>阶段性特征</td>
+              <td>在低水平、中等水平、高水平阶段影响不同。</td>
+              <td>可设定单门限、双门限或多门限模型。</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2 class="sub-title">3.2 单门限模型设定</h2>
+        <p>设 \(y_{it}\) 为被解释变量，\(x_{it}\) 为核心解释变量，\(q_{it}\) 为门限变量，\(\gamma\) 为待估计的门限值。单门限面板模型可写为：</p>
+        <div class="formula">
+          \[
+          y_{it}
+          =\mu_i+\beta_1x_{it}I(q_{it}\le \gamma)
+          +\beta_2x_{it}I(q_{it}\gt \gamma)
+          +\delta'Controls_{it}
+          +\varepsilon_{it}
+          \]
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 20%;">符号</th>
+              <th style="width: 36%;">含义</th>
+              <th>考试解释</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>\(q_{it}\)</td>
+              <td>门限变量</td>
+              <td>决定样本落入低门限区间还是高门限区间。</td>
+            </tr>
+            <tr>
+              <td>\(\gamma\)</td>
+              <td>门限值</td>
+              <td>由数据估计得到，用于划分不同影响区间。</td>
+            </tr>
+            <tr>
+              <td>\(I(\cdot)\)</td>
+              <td>示性函数</td>
+              <td>条件成立时取 1，否则取 0。</td>
+            </tr>
+            <tr>
+              <td>\(\beta_1\)</td>
+              <td>低门限区间的影响</td>
+              <td>表示当 \(q_{it}\le\gamma\) 时，\(x_{it}\) 对 \(y_{it}\) 的边际影响。</td>
+            </tr>
+            <tr>
+              <td>\(\beta_2\)</td>
+              <td>高门限区间的影响</td>
+              <td>表示当 \(q_{it}\gt\gamma\) 时，\(x_{it}\) 对 \(y_{it}\) 的边际影响。</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note exam">
+          <strong>系数解释核心：</strong>如果 \(\beta_1\) 与 \(\beta_2\) 的大小或显著性不同，说明核心解释变量 \(x\) 对 \(y\) 的影响存在门限特征；如果 \(\beta_2\gt\beta_1\)，说明跨过门限后影响增强。
+        </div>
+      </section>
+
+      <section>
+        <h2 class="sub-title">3.3 双门限与多门限模型</h2>
+        <p>如果影响机制可能存在三个阶段，可以设定双门限模型。设两个门限值为 \(\gamma_1\) 和 \(\gamma_2\)，且 \(\gamma_1\lt\gamma_2\)，模型为：</p>
+        <div class="formula">
+          \[
+          y_{it}
+          =\mu_i+\beta_1x_{it}I(q_{it}\le\gamma_1)
+          +\beta_2x_{it}I(\gamma_1\lt q_{it}\le\gamma_2)
+          +\beta_3x_{it}I(q_{it}\gt\gamma_2)
+          +\delta'Controls_{it}
+          +\varepsilon_{it}
+          \]
+        </div>
+        <p>双门限模型将样本分为低水平区间、中等水平区间和高水平区间。考试中重点不是机械背诵多个门限，而是说明每个区间中 \(x\) 对 \(y\) 的影响由对应的 \(\beta_j\) 表示。</p>
+        <div class="grid">
+          <div class="card">
+            <h3>低区间</h3>
+            <p>\(q_{it}\le\gamma_1\)，影响为 \(\beta_1\)。</p>
+          </div>
+          <div class="card">
+            <h3>中区间</h3>
+            <p>\(\gamma_1\lt q_{it}\le\gamma_2\)，影响为 \(\beta_2\)。</p>
+          </div>
+          <div class="card">
+            <h3>高区间</h3>
+            <p>\(q_{it}\gt\gamma_2\)，影响为 \(\beta_3\)。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="sub-title">3.4 Stata 命令</h2>
+        <p>面板门限模型常见写法是先设定面板数据结构，再使用门限面板命令估计门限值和分区间系数。不同 Stata 版本或用户命令写法可能略有差异，复习时重点掌握命令逻辑。</p>
+        <pre><code>xtset id year
+xthreg y x controls, rx(x) qx(q) thnum(1) trim(0.01) grid(300) bs(300)</code></pre>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 24%;">命令或选项</th>
+              <th style="width: 36%;">含义</th>
+              <th>考试写法</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>xtset id year</code></td>
+              <td>声明面板数据结构。</td>
+              <td>先告诉 Stata 个体变量和时间变量。</td>
+            </tr>
+            <tr>
+              <td><code>rx(x)</code></td>
+              <td>设定分区间系数变量。</td>
+              <td>表示 \(x\) 的系数允许在不同门限区间变化。</td>
+            </tr>
+            <tr>
+              <td><code>qx(q)</code></td>
+              <td>设定门限变量。</td>
+              <td>用 \(q\) 的取值划分样本区间。</td>
+            </tr>
+            <tr>
+              <td><code>thnum(1)</code></td>
+              <td>设定门限个数。</td>
+              <td>1 表示单门限；如果是双门限可写为 <code>thnum(2)</code>。</td>
+            </tr>
+            <tr>
+              <td><code>trim(0.01)</code></td>
+              <td>剔除两端极少数观测。</td>
+              <td>避免某一区间观测值过少导致估计不稳定。</td>
+            </tr>
+            <tr>
+              <td><code>grid(300)</code></td>
+              <td>门限值网格搜索次数。</td>
+              <td>在候选门限值中搜索使残差平方和最小的门限。</td>
+            </tr>
+            <tr>
+              <td><code>bs(300)</code></td>
+              <td>Bootstrap 重复次数。</td>
+              <td>用于检验门限效应是否显著。</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>如果题目已经给出估计出的门限值 \(\hat{\gamma}\)，也可以手动构造分区间变量，再用固定效应模型解释：</p>
+        <pre><code>gen low  = x*(q &lt;= gamma_hat)
+gen high = x*(q &gt; gamma_hat)
+xtreg y low high controls i.year, fe vce(cluster id)</code></pre>
+      </section>
+
+      <section>
+        <h2 class="sub-title">3.5 例子：数字金融对企业创新的门限效应</h2>
+        <p>假设研究数字金融发展 \(df_{it}\) 对企业创新 \(innovation_{it}\) 的影响，并认为融资约束 \(finance_{it}\) 可能是门限变量。可以设定：</p>
+        <div class="formula">
+          \[
+          innovation_{it}
+          =\mu_i+\beta_1df_{it}I(finance_{it}\le\gamma)
+          +\beta_2df_{it}I(finance_{it}\gt\gamma)
+          +\delta'Controls_{it}
+          +\varepsilon_{it}
+          \]
+        </div>
+        <p>对应 Stata 命令可写为：</p>
+        <pre><code>xtset firm year
+xthreg innovation df size lev roa age, rx(df) qx(finance) thnum(1) trim(0.01) grid(300) bs(300)</code></pre>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 22%;">估计结果示例</th>
+              <th style="width: 34%;">含义</th>
+              <th>考试解释</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>\(\hat{\gamma}=0.45\)</td>
+              <td>融资约束门限值为 0.45。</td>
+              <td>样本可按 \(finance_{it}\le0.45\) 和 \(finance_{it}\gt0.45\) 分为两个区间。</td>
+            </tr>
+            <tr>
+              <td>\(\beta_1=0.08\)</td>
+              <td>低门限区间的数字金融影响。</td>
+              <td>当融资约束变量较低时，数字金融对创新具有正向影响，但强度较弱。</td>
+            </tr>
+            <tr>
+              <td>\(\beta_2=0.21\)</td>
+              <td>高门限区间的数字金融影响。</td>
+              <td>当跨过门限值后，数字金融对创新的促进作用明显增强。</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note exam">
+          <strong>结论句：</strong>数字金融对企业创新的影响并非简单线性关系，而是会随着融资约束水平的变化呈现门限特征；当门限变量超过临界值后，数字金融的边际促进作用更强。
+        </div>
+      </section>
+
+      <section>
+        <h2 class="sub-title">3.6 面板门限模型考场完整答题模板</h2>
+        <div class="note exam">
+          <p><strong>模型选择：</strong>本题为面板数据，且题目关注核心解释变量 \(x\) 对被解释变量 \(y\) 的影响是否会随着门限变量 \(q\) 的不同水平而变化，因此可以采用面板门限模型。</p>
+          <p><strong>模型设定：</strong></p>
+          <div class="formula">
+            \[
+            y_{it}=\mu_i+\beta_1x_{it}I(q_{it}\le\gamma)
+            +\beta_2x_{it}I(q_{it}\gt\gamma)
+            +\delta'Controls_{it}
+            +\varepsilon_{it}
+            \]
+          </div>
+          <p>其中，\(\gamma\) 为待估计门限值，\(I(\cdot)\) 为示性函数，\(\beta_1\) 和 \(\beta_2\) 分别表示低门限区间和高门限区间中 \(x\) 对 \(y\) 的影响。</p>
+          <p><strong>Stata 命令：</strong></p>
+          <pre><code>xtset id year
+xthreg y x controls, rx(x) qx(q) thnum(1) trim(0.01) grid(300) bs(300)</code></pre>
+          <p><strong>检验与解释：</strong>通过 Bootstrap 检验判断门限效应是否显著；如果门限效应显著，说明样本确实可以按照 \(q\) 的门限值分为不同区间。若 \(\beta_2\gt\beta_1\)，说明 \(q\) 超过门限值后，\(x\) 对 \(y\) 的促进作用增强；若 \(\beta_2\lt\beta_1\)，说明跨过门限后影响减弱。</p>
+        </div>
+      </section>
+
+      <section id="model-4">
+        <h1 class="model-title">模型四：面板分位数模型</h1>
+        <h2 class="sub-title">4.1 什么时候使用分位数模型</h2>
+        <p>普通 OLS 或固定效应模型主要解释“平均意义上”的影响，而分位数模型关注解释变量在被解释变量不同分位点上的影响差异。题目中如果强调“异质性”“低水平与高水平样本差异”“分布尾部”“不同分位点影响是否不同”，可以考虑分位数模型。</p>
+        <div class="grid">
+          <div class="card">
+            <h3>低分位点</h3>
+            <p>如 \(\tau=0.25\)，考察低水平 \(y\) 群体中的影响。</p>
+          </div>
+          <div class="card">
+            <h3>中位数</h3>
+            <p>如 \(\tau=0.50\)，考察中位水平群体中的影响。</p>
+          </div>
+          <div class="card">
+            <h3>高分位点</h3>
+            <p>如 \(\tau=0.75\)，考察高水平 \(y\) 群体中的影响。</p>
+          </div>
+        </div>
+        <div class="note exam">
+          <strong>考场识别：</strong>如果题目要求比较“低水平企业、中等水平企业和高水平企业中核心变量影响是否不同”，分位数模型比普通均值回归更合适。
+        </div>
+      </section>
+
+      <section>
+        <h2 class="sub-title">4.2 模型设定</h2>
+        <p>面板分位数模型可写为条件分位数形式：</p>
+        <div class="formula">
+          \[
+          Q_{\tau}(y_{it}\mid x_{it},Controls_{it},\alpha_i)
+          =\alpha_i(\tau)+\beta_{\tau}x_{it}
+          +\delta_{\tau}'Controls_{it}
+          \]
+        </div>
+        <p>其中，\(Q_{\tau}(y_{it}\mid \cdot)\) 表示在给定解释变量条件下 \(y_{it}\) 的第 \(\tau\) 个条件分位数，\(\tau\) 通常取 \(0.25\)、\(0.50\)、\(0.75\) 等。</p>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 22%;">符号</th>
+              <th style="width: 36%;">含义</th>
+              <th>考试解释</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>\(\tau\)</td>
+              <td>分位点</td>
+              <td>表示关注被解释变量分布中的哪个位置。</td>
+            </tr>
+            <tr>
+              <td>\(Q_{\tau}(y_{it}\mid\cdot)\)</td>
+              <td>条件分位数</td>
+              <td>不是 \(y\) 的均值，而是 \(y\) 在某一分位点的条件水平。</td>
+            </tr>
+            <tr>
+              <td>\(\beta_{\tau}\)</td>
+              <td>第 \(\tau\) 分位点上的核心系数</td>
+              <td>表示在该分位点上，\(x\) 增加 1 个单位对 \(y\) 的影响。</td>
+            </tr>
+            <tr>
+              <td>\(\alpha_i(\tau)\)</td>
+              <td>个体固定效应</td>
+              <td>控制不随时间变化的个体异质性，并允许其在分位点上体现。</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note warn">
+          <strong>注意：</strong>\(\beta_{\tau}\) 解释的是“第 \(\tau\) 分位点上的边际影响”，不是全样本平均影响。不要把分位数回归结果直接说成平均效应。
+        </div>
+      </section>
+
+      <section>
+        <h2 class="sub-title">4.3 与 OLS / 固定效应模型的区别</h2>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 22%;">模型</th>
+              <th style="width: 34%;">估计对象</th>
+              <th>适用解释</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>OLS / 固定效应模型</td>
+              <td>条件均值 \(E(y_{it}\mid X_{it})\)</td>
+              <td>回答“平均来看，\(x\) 对 \(y\) 有什么影响”。</td>
+            </tr>
+            <tr>
+              <td>分位数模型</td>
+              <td>条件分位数 \(Q_{\tau}(y_{it}\mid X_{it})\)</td>
+              <td>回答“在低分位、中位数和高分位群体中，\(x\) 的影响是否不同”。</td>
+            </tr>
+            <tr>
+              <td>面板分位数模型</td>
+              <td>带有个体效应的条件分位数</td>
+              <td>既考虑面板数据个体异质性，又考察分布不同位置的影响差异。</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note exam">
+          <strong>考试表达：</strong>固定效应模型只能给出平均效应，分位数模型可以揭示核心解释变量在被解释变量不同分布位置上的异质性影响。
+        </div>
+      </section>
+
+      <section>
+        <h2 class="sub-title">4.4 Stata 命令</h2>
+        <p>如果是普通分位数回归，可以使用 <code>qreg</code> 分别估计不同分位点：</p>
+        <pre><code>qreg y x controls, quantile(0.25) vce(robust)
+qreg y x controls, quantile(0.50) vce(robust)
+qreg y x controls, quantile(0.75) vce(robust)</code></pre>
+        <p>如果要同时估计多个分位点并比较系数，可以使用 <code>sqreg</code>：</p>
+        <pre><code>sqreg y x controls, q(0.25 0.50 0.75) reps(300)</code></pre>
+        <p>如果题目强调面板数据，可以加入个体和时间虚拟变量，或者使用课程中指定的面板分位数命令：</p>
+        <pre><code>qreg y x controls i.id i.year, quantile(0.50) vce(robust)</code></pre>
+        <pre><code>xtqreg y x controls i.year, quantile(0.50)</code></pre>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 22%;">命令</th>
+              <th style="width: 34%;">用途</th>
+              <th>考试写法</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>qreg</code></td>
+              <td>估计单个分位点。</td>
+              <td>适合分别报告 25%、50%、75% 分位点结果。</td>
+            </tr>
+            <tr>
+              <td><code>sqreg</code></td>
+              <td>同时估计多个分位点。</td>
+              <td>适合比较不同分位点之间系数差异。</td>
+            </tr>
+            <tr>
+              <td><code>i.id i.year</code></td>
+              <td>加入个体和时间虚拟变量。</td>
+              <td>在答题中表示控制个体效应和时间效应。</td>
+            </tr>
+            <tr>
+              <td><code>xtqreg</code></td>
+              <td>面板分位数回归命令。</td>
+              <td>如果课程材料采用该命令，可直接写作面板分位数估计。</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2 class="sub-title">4.5 例子：教育回报在工资分布中的异质性</h2>
+        <p>假设研究教育年限 \(educ_{it}\) 对工资水平 \(\ln wage_{it}\) 的影响，并关心这种影响在低工资、中等工资和高工资群体中是否不同。模型可写为：</p>
+        <div class="formula">
+          \[
+          Q_{\tau}(\ln wage_{it}\mid educ_{it},X_{it},\alpha_i)
+          =\alpha_i(\tau)+\beta_{\tau}educ_{it}
+          +\delta_{\tau}'X_{it}
+          \]
+        </div>
+        <p>Stata 命令示例：</p>
+        <pre><code>sqreg lwage educ exper expersq union married, q(0.25 0.50 0.75) reps(300)</code></pre>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 22%;">估计结果示例</th>
+              <th style="width: 34%;">含义</th>
+              <th>考试解释</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>\(\beta_{0.25}=0.03\)</td>
+              <td>低工资分位点的教育回报。</td>
+              <td>在低工资群体中，教育年限增加 1 年，工资约提高 3%。</td>
+            </tr>
+            <tr>
+              <td>\(\beta_{0.50}=0.06\)</td>
+              <td>中位数工资群体的教育回报。</td>
+              <td>在中位工资群体中，教育回报约为 6%。</td>
+            </tr>
+            <tr>
+              <td>\(\beta_{0.75}=0.10\)</td>
+              <td>高工资分位点的教育回报。</td>
+              <td>在高工资群体中，教育回报约为 10%。</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note exam">
+          <strong>结论句：</strong>由于 \(\beta_{0.75}\gt\beta_{0.50}\gt\beta_{0.25}\)，说明教育对工资的影响在工资分布高端更强，教育回报存在明显的分位数异质性。
+        </div>
+      </section>
+
+      <section>
+        <h2 class="sub-title">4.6 系数解释模板</h2>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 24%;">系数</th>
+              <th style="width: 34%;">含义</th>
+              <th>考试解释句</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>\(\beta_{0.25}\)</td>
+              <td>第 25 分位点上的影响</td>
+              <td>表示在被解释变量较低水平群体中，\(x\) 对 \(y\) 的边际影响。</td>
+            </tr>
+            <tr>
+              <td>\(\beta_{0.50}\)</td>
+              <td>第 50 分位点上的影响</td>
+              <td>表示在中位水平群体中，\(x\) 对 \(y\) 的边际影响。</td>
+            </tr>
+            <tr>
+              <td>\(\beta_{0.75}\)</td>
+              <td>第 75 分位点上的影响</td>
+              <td>表示在被解释变量较高水平群体中，\(x\) 对 \(y\) 的边际影响。</td>
+            </tr>
+            <tr>
+              <td>系数递增</td>
+              <td>\(\beta_{0.75}\gt\beta_{0.50}\gt\beta_{0.25}\)</td>
+              <td>说明 \(x\) 对高分位群体的影响更强。</td>
+            </tr>
+            <tr>
+              <td>系数递减</td>
+              <td>\(\beta_{0.75}\lt\beta_{0.50}\lt\beta_{0.25}\)</td>
+              <td>说明 \(x\) 对低分位群体的影响更强。</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2 class="sub-title">4.7 面板分位数模型考场完整答题模板</h2>
+        <div class="note exam">
+          <p><strong>模型选择：</strong>本题关注核心解释变量 \(x\) 对被解释变量 \(y\) 的影响是否在不同分位点上存在差异。普通固定效应模型只能解释平均影响，无法揭示分布不同位置的异质性，因此可以采用面板分位数模型。</p>
+          <p><strong>模型设定：</strong></p>
+          <div class="formula">
+            \[
+            Q_{\tau}(y_{it}\mid x_{it},Controls_{it},\alpha_i)
+            =\alpha_i(\tau)+\beta_{\tau}x_{it}
+            +\delta_{\tau}'Controls_{it}
+            \]
+          </div>
+          <p>其中，\(\tau\) 表示分位点，常取 \(0.25\)、\(0.50\)、\(0.75\)；\(\beta_{\tau}\) 表示在第 \(\tau\) 分位点上 \(x\) 对 \(y\) 的影响。</p>
+          <p><strong>Stata 命令：</strong></p>
+          <pre><code>qreg y x controls, quantile(0.25) vce(robust)
+qreg y x controls, quantile(0.50) vce(robust)
+qreg y x controls, quantile(0.75) vce(robust)</code></pre>
+          <p>或同时估计多个分位点：</p>
+          <pre><code>sqreg y x controls, q(0.25 0.50 0.75) reps(300)</code></pre>
+          <p><strong>经济含义：</strong>若 \(\beta_{0.75}\gt\beta_{0.25}\)，说明核心解释变量 \(x\) 对高分位样本的影响更强；若 \(\beta_{0.25}\gt\beta_{0.75}\)，说明 \(x\) 对低分位样本的影响更强。不同分位点系数存在差异，表明 \(x\) 对 \(y\) 的影响具有异质性。</p>
+        </div>
+      </section>
+
+      <section id="model-5">
+        <h1 class="model-title">模型五：空间面板模型</h1>
+        <h2 class="sub-title">5.1 什么时候使用空间面板模型</h2>
+        <p>空间面板模型适用于题目给出“地区 \(i\) - 时间 \(t\)”面板数据，并且研究对象之间存在地理邻近、经济联系或政策扩散关系的情形。它比普通面板模型多考虑一个核心问题：一个地区的 \(y\) 不仅受本地区 \(x\) 影响，也可能受邻近地区 \(y\)、邻近地区 \(x\) 或邻近地区未观测冲击的影响。</p>
+        <div class="note exam">
+          <p><strong>考试识别信号：</strong>题干出现“空间相关”“空间溢出”“邻近地区影响”“地区联动”“集聚效应”“扩散效应”“省份/城市/地区面板数据”等关键词时，应优先考虑空间面板模型。</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h3>空间相关性</h3>
+            <p>指本地区的经济变量与邻近地区相关，即可以从一个地区的表现推估周边地区的表现。例如一个城市的创新水平可能受周边城市创新活动影响。</p>
+          </div>
+          <div class="card">
+            <h3>空间异质性</h3>
+            <p>指变量关系在不同地区不稳定，同一个解释变量在东部、中部和西部地区可能表现出不同影响。空间面板模型主要处理空间相关性，异质性可结合分组、交互项或地理加权回归讨论。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="sub-title">5.2 空间权重矩阵 \(W\)：空间模型比普通面板多了什么</h2>
+        <p>空间面板模型必须先给定空间权重矩阵 \(W=(w_{ij})\)，用于刻画“谁和谁相邻”以及相邻关系的强弱。\(W\) 通常是 \(N\times N\) 矩阵，其中 \(N\) 是地区或空间单元数量。</p>
+        <table>
+          <colgroup>
+            <col style="width:22%">
+            <col style="width:42%">
+            <col style="width:36%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>类型</th>
+              <th>设定方式</th>
+              <th>考试写法</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>邻接矩阵</strong></td>
+              <td>若地区 \(i\) 与地区 \(j\) 相邻，则 \(w_{ij}=1\)；否则 \(w_{ij}=0\)。</td>
+              <td>对角线元素恒为 0，即 \(w_{ii}=0\)，因为一个地区不作为自己的邻居。</td>
+            </tr>
+            <tr>
+              <td><strong>距离矩阵</strong></td>
+              <td>常用距离倒数设定，如 \(w_{ij}=1/d_{ij}\)，距离越近权重越大。</td>
+              <td>距离可以是地理距离、经济距离或社会网络距离。</td>
+            </tr>
+            <tr>
+              <td><strong>行标准化</strong></td>
+              <td>将每一行元素除以该行之和，使每行权重和为 1。</td>
+              <td>\(Wy\) 可解释为邻近地区 \(y\) 的加权平均值，即空间滞后项。</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="formula">
+          \[
+          (Wy)_{it}=\sum_{j=1}^{N}w_{ij}y_{jt}
+          \]
+        </div>
+        <p>其中，\((Wy)_{it}\) 表示地区 \(i\) 在时期 \(t\) 的邻近地区被解释变量加权平均值。只要模型中出现 \(Wy\)、\(WX\) 或 \(Wu\)，就说明已经把邻近地区的信息纳入回归。</p>
+      </section>
+
+      <section>
+        <h2 class="sub-title">5.3 四类常见空间面板模型：SAR、SDM、SEM、SAC</h2>
+        <p>空间模型的核心区别在于空间效应进入哪里：进入被解释变量 \(y\)、解释变量 \(X\)、还是误差项 \(u\)。考试中最常见的是 SAR 和 SDM，SEM 与 SAC 主要用于模型识别和选择。</p>
+        <table>
+          <colgroup>
+            <col style="width:16%">
+            <col style="width:30%">
+            <col style="width:34%">
+            <col style="width:20%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>模型</th>
+              <th>模型设定</th>
+              <th>含义</th>
+              <th>记忆方式</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>SAR</strong><br>空间自回归模型</td>
+              <td>\[
+                y_{it}=\rho\sum_j w_{ij}y_{jt}+x_{it}'\beta+\mu_i+\lambda_t+\varepsilon_{it}
+              \]</td>
+              <td>本地区 \(y\) 受到邻近地区 \(y\) 的影响，刻画被解释变量的空间滞后。</td>
+              <td>\(Wy\)</td>
+            </tr>
+            <tr>
+              <td><strong>SDM</strong><br>空间杜宾模型</td>
+              <td>\[
+                y_{it}=\rho Wy_{it}+x_{it}'\beta+(Wx_{it})'\theta+\mu_i+\lambda_t+\varepsilon_{it}
+              \]</td>
+              <td>在 SAR 基础上加入邻近地区 \(X\) 的影响，可同时分析本地影响和邻近地区解释变量的溢出影响。</td>
+              <td>\(Wy+WX\)</td>
+            </tr>
+            <tr>
+              <td><strong>SEM</strong><br>空间误差模型</td>
+              <td>\[
+                y_{it}=x_{it}'\beta+\mu_i+\lambda_t+u_{it},\quad
+                u_{it}=\rho\sum_j w_{ij}u_{jt}+\varepsilon_{it}
+              \]</td>
+              <td>空间相关性体现在遗漏因素或扰动项中，本地区未观测冲击会受邻近地区未观测冲击影响。</td>
+              <td>\(Wu\)</td>
+            </tr>
+            <tr>
+              <td><strong>SAC</strong><br>空间自相关模型</td>
+              <td>\[
+                y_{it}=\rho Wy_{it}+x_{it}'\beta+\mu_i+\lambda_t+u_{it},\quad
+                u_{it}=\eta Wu_{it}+\varepsilon_{it}
+              \]</td>
+              <td>同时包含被解释变量空间滞后和误差项空间相关，是 SAR 与 SEM 的结合。</td>
+              <td>\(Wy+Wu\)</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note">
+          <p><strong>默认答题策略：</strong>如果题目只说“空间溢出”而没有明确给出误差项空间相关，一般先写 SAR 或 SDM。若题目特别强调邻近地区解释变量 \(X\) 的影响，应写 SDM；若强调遗漏因素或扰动项相关，应写 SEM。</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="sub-title">5.4 Stata 命令：空间面板模型怎么估计</h2>
+        <p>空间面板常用命令是 <code>xsmle</code>。其基本思路是先设定面板，再指定空间权重矩阵、模型类型、固定效应类型，并用 <code>effects</code> 输出直接效应、间接效应和总效应。</p>
+        <pre><code>* 1. 设定面板数据
+xtset id year
+
+* 2. SAR：被解释变量存在空间滞后
+xsmle y x1 x2 controls, wmat(W) model(sar) fe type(both) effects nolog
+
+* 3. SDM：被解释变量和解释变量都存在空间效应
+xsmle y x1 x2 controls, wmat(W) dmat(W) model(sdm) fe type(both) effects nolog
+
+* 4. SEM：误差项存在空间相关
+xsmle y x1 x2 controls, emat(W) model(sem) fe type(both) nolog
+
+* 5. SAC：被解释变量和误差项都存在空间相关
+xsmle y x1 x2 controls, wmat(W) emat(W) model(sac) fe type(both) nolog</code></pre>
+        <table>
+          <colgroup>
+            <col style="width:24%">
+            <col style="width:76%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>命令选项</th>
+              <th>含义</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>wmat(W)</code></td>
+              <td>指定被解释变量空间滞后项 \(Wy\) 的权重矩阵。</td>
+            </tr>
+            <tr>
+              <td><code>dmat(W)</code></td>
+              <td>指定解释变量空间滞后项 \(WX\) 的权重矩阵，SDM 中常用。</td>
+            </tr>
+            <tr>
+              <td><code>emat(W)</code></td>
+              <td>指定误差项空间相关 \(Wu\) 的权重矩阵，SEM 或 SAC 中常用。</td>
+            </tr>
+            <tr>
+              <td><code>model()</code></td>
+              <td>指定模型类型，可选 <code>sar</code>、<code>sdm</code>、<code>sem</code>、<code>sac</code>。</td>
+            </tr>
+            <tr>
+              <td><code>type(both)</code></td>
+              <td>控制双向固定效应，即同时控制个体效应 \(\mu_i\) 与时间效应 \(\lambda_t\)。</td>
+            </tr>
+            <tr>
+              <td><code>effects</code></td>
+              <td>输出直接效应、间接效应和总效应。解释空间溢出时必须看这个结果，而不是只看原始 \(\beta\)。</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note warn">
+          <p><strong>注意：</strong>SEM 的空间相关性在误差项中，通常不用于解释 \(X\) 的直接效应和间接效应；SAC 模型参数较多，部分设定下只能做固定效应，不一定适合 Hausman 检验。</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="sub-title">5.5 例子：数字金融对城市绿色创新的空间溢出效应</h2>
+        <h3>1. 研究问题</h3>
+        <p>假设研究数字金融发展水平 \(dfi_{it}\) 是否提高城市绿色创新 \(green_{it}\)，并且考虑相邻城市之间存在知识扩散、产业关联和政策模仿，因此绿色创新可能具有空间溢出效应。</p>
+        <h3>2. SAR 模型设定</h3>
+        <div class="formula">
+          \[
+          green_{it}=\rho\sum_j w_{ij}green_{jt}
+          +\beta dfi_{it}
+          +\delta'Controls_{it}
+          +\mu_i+\lambda_t+\varepsilon_{it}
+          \]
+        </div>
+        <p>其中，\(\rho\) 衡量邻近城市绿色创新对本城市绿色创新的影响；\(\beta\) 衡量本城市数字金融对本城市绿色创新的影响；\(\mu_i\) 控制城市固定效应，\(\lambda_t\) 控制年份固定效应。</p>
+        <h3>3. SDM 模型设定</h3>
+        <div class="formula">
+          \[
+          green_{it}=\rho Wgreen_{it}
+          +\beta dfi_{it}
+          +\theta Wdfi_{it}
+          +\delta'Controls_{it}
+          +\mu_i+\lambda_t+\varepsilon_{it}
+          \]
+        </div>
+        <p>若题目更关心“周边城市数字金融是否影响本城市绿色创新”，则应使用 SDM，因为它把 \(Wdfi_{it}\) 放入模型。</p>
+        <h3>4. Stata 命令</h3>
+        <pre><code>xtset city year
+xsmle green dfi rd gdp industry, wmat(W) model(sar) fe type(both) effects nolog
+
+xsmle green dfi rd gdp industry, wmat(W) dmat(W) model(sdm) fe type(both) effects nolog</code></pre>
+      </section>
+
+      <section>
+        <h2 class="sub-title">5.6 系数含义与效应分解：空间模型最容易丢分的地方</h2>
+        <p>空间模型中不能直接把 \(\beta\) 当作普通边际效应解释。原因是模型含有 \(Wy\)，本地区 \(x\) 的变化会先影响本地区 \(y\)，再通过空间网络影响其他地区，其他地区变化后又可能反过来影响本地区，形成反馈回路。</p>
+        <div class="formula">
+          \[
+          y=(I-\rho W)^{-1}X\beta+(I-\rho W)^{-1}\varepsilon
+          \]
+        </div>
+        <p>因此，解释经济含义时要看 <code>effects</code> 输出的三类效应：</p>
+        <table>
+          <colgroup>
+            <col style="width:24%">
+            <col style="width:40%">
+            <col style="width:36%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>效应</th>
+              <th>含义</th>
+              <th>考试解释模板</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>直接效应</strong><br>Direct effect</td>
+              <td>本地区 \(x\) 对本地区 \(y\) 的影响，包含空间反馈后的本地影响。</td>
+              <td>固定其他因素不变，本地区 \(x\) 每增加 1 个单位，平均来说，本地区 \(y\) 增加 \(a\) 个单位。</td>
+            </tr>
+            <tr>
+              <td><strong>间接效应</strong><br>Indirect effect</td>
+              <td>本地区 \(x\) 对其他地区 \(y\) 的影响，或周边地区 \(x\) 通过空间网络对本地区 \(y\) 的影响。</td>
+              <td>固定其他因素不变，本地区 \(x\) 每增加 1 个单位，平均来说，周边地区 \(y\) 增加 \(b\) 个单位，说明存在空间溢出效应。</td>
+            </tr>
+            <tr>
+              <td><strong>总效应</strong><br>Total effect</td>
+              <td>直接效应与间接效应之和。</td>
+              <td>固定其他因素不变，本地区 \(x\) 每增加 1 个单位，对所有地区 \(y\) 的总影响为 \(a+b\)。</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note exam">
+          <p><strong>若 \(x\) 和 \(y\) 取对数：</strong>直接效应、间接效应和总效应都按弹性解释。例如间接效应为 0.12，可写为：本地区 \(x\) 增加 1%，平均来说，周边地区 \(y\) 增加 0.12%。</p>
+          <p><strong>若只有 \(y\) 取对数：</strong>效应值按半弹性解释。例如直接效应为 0.08，可写为：本地区 \(x\) 每增加 1 个单位，本地区 \(y\) 平均增加约 8%。</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="sub-title">5.7 空间相关检验与模型选择</h2>
+        <h3>1. Moran's I：先判断有没有空间相关</h3>
+        <p>Moran's I 用于检验变量是否存在空间自相关。若 \(I\gt0\) 且显著，说明相似地区在空间上集聚；若 \(I\lt0\) 且显著，说明存在负空间相关；若不显著，则空间相关证据不足。</p>
+        <div class="formula">
+          \[
+          I=\frac{N}{S_0}\frac{\sum_i\sum_jw_{ij}(x_i-\bar{x})(x_j-\bar{x})}
+          {\sum_i(x_i-\bar{x})^2},\qquad
+          S_0=\sum_i\sum_jw_{ij}
+          \]
+        </div>
+        <div class="note warn">
+          <p><strong>易错点：</strong>无空间自相关时，Moran's I 的期望不是 0，而是 \(E(I)=-1/(N-1)\)，当 \(N\) 很大时才接近 0。</p>
+        </div>
+        <h3>2. LM、LR、Wald 与 Hausman 检验</h3>
+        <table>
+          <colgroup>
+            <col style="width:28%">
+            <col style="width:36%">
+            <col style="width:36%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>检验</th>
+              <th>解决的问题</th>
+              <th>答题口径</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Moran's I</strong></td>
+              <td>是否存在空间自相关。</td>
+              <td>若显著，说明应考虑空间计量模型。</td>
+            </tr>
+            <tr>
+              <td><strong>LM-lag / LM-error</strong></td>
+              <td>空间滞后在 \(y\) 中还是在误差项中。</td>
+              <td>LM-lag 显著偏向 SAR，LM-error 显著偏向 SEM；稳健 LM 更常用于比较。</td>
+            </tr>
+            <tr>
+              <td><strong>LR / Wald</strong></td>
+              <td>SDM 能否简化为 SAR 或 SEM。</td>
+              <td>若拒绝约束，说明 SDM 不能简化，应保留更一般的 SDM。</td>
+            </tr>
+            <tr>
+              <td><strong>Hausman</strong></td>
+              <td>固定效应还是随机效应。</td>
+              <td>若显著，拒绝随机效应，选择固定效应。</td>
+            </tr>
+          </tbody>
+        </table>
+        <pre><code>* 嵌套约束检验示意
+estimates store sdm
+estimates store sar
+lrtest sdm sar
+
+* 若 p 值显著，说明 SDM 不能简化为 SAR，解释变量空间滞后项具有必要性。</code></pre>
+        <div class="note">
+          <p><strong>模型选择记忆：</strong>\(y\) 存在空间效应选 SAR；\(y\) 和 \(x\) 都存在空间效应选 SDM；误差项存在空间效应选 SEM；\(y\) 和误差项都存在空间效应选 SAC。若 \(x\)、\(y\)、\(\varepsilon\) 均存在空间效应，SDM 或 SAC 都可作为候选，但实证题中通常优先解释 SDM 的空间溢出效应。</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="sub-title">5.8 空间面板模型考场完整答题模板</h2>
+        <div class="note exam">
+          <p><strong>模型选择：</strong>本题研究地区 \(i\) 在时期 \(t\) 的 \(y_{it}\) 受核心解释变量 \(x_{it}\) 的影响，同时题干强调邻近地区之间存在空间相关或空间溢出。普通面板模型无法刻画邻近地区之间的相互影响，因此应采用空间面板模型。</p>
+          <p><strong>空间权重矩阵：</strong>设定空间权重矩阵 \(W=(w_{ij})\)，用邻接关系或距离倒数刻画地区间联系，并进行行标准化，使 \(Wy\) 表示邻近地区 \(y\) 的加权平均值。</p>
+          <p><strong>模型设定：</strong>若主要考虑被解释变量的空间滞后，可设定 SAR 模型：</p>
+          <div class="formula">
+            \[
+            y_{it}=\rho\sum_j w_{ij}y_{jt}
+            +\beta x_{it}+\delta'Controls_{it}
+            +\mu_i+\lambda_t+\varepsilon_{it}
+            \]
+          </div>
+          <p>若进一步考虑邻近地区解释变量的影响，可设定 SDM 模型：</p>
+          <div class="formula">
+            \[
+            y_{it}=\rho Wy_{it}+\beta x_{it}+\theta Wx_{it}
+            +\delta'Controls_{it}+\mu_i+\lambda_t+\varepsilon_{it}
+            \]
+          </div>
+          <p><strong>Stata 命令：</strong></p>
+          <pre><code>xtset id year
+xsmle y x controls, wmat(W) model(sar) fe type(both) effects nolog
+xsmle y x controls, wmat(W) dmat(W) model(sdm) fe type(both) effects nolog</code></pre>
+          <p><strong>结果解释：</strong>空间模型存在反馈机制，不能直接把 \(\beta\) 当作边际效应解释，应根据 <code>effects</code> 输出解释直接效应、间接效应和总效应。直接效应表示本地区 \(x\) 对本地区 \(y\) 的影响；间接效应表示本地区 \(x\) 对周边地区 \(y\) 的影响，即空间溢出效应；总效应为二者之和。</p>
+          <p><strong>检验说明：</strong>可先用 Moran's I 判断是否存在空间自相关，再通过 LM 检验判断空间滞后或空间误差形式，通过 LR/Wald 检验判断 SDM 是否可简化为 SAR 或 SEM，并通过 Hausman 检验选择固定效应或随机效应。</p>
+        </div>
+      </section>
     </article>
   </main>
+  <script>
+    const modelButtons = Array.from(document.querySelectorAll('[data-model-target]'));
+    const modelCards = Array.from(document.querySelectorAll('[data-model-card]'));
+    const modelSections = Array.from(document.querySelectorAll('article.sheet > section'));
+    const modelIds = modelButtons.map((button) => button.dataset.modelTarget);
+    const sheet = document.querySelector('.sheet');
+    const modelDirectory = document.getElementById('modelDirectory');
+    const modelNav = document.querySelector('.model-nav');
+    const backToModels = document.getElementById('backToModels');
+    const modelToc = document.getElementById('modelToc');
+    const modelTocLinks = document.getElementById('modelTocLinks');
+
+    let activeModelId = modelIds[0];
+    modelSections.forEach((section) => {
+      if (modelIds.includes(section.id)) {
+        activeModelId = section.id;
+      }
+      section.classList.add('model-section');
+      section.dataset.model = activeModelId;
+    });
+
+    function buildModelToc(modelId) {
+      modelTocLinks.innerHTML = '';
+      const sections = modelSections.filter((section) => section.dataset.model === modelId);
+
+      sections.forEach((section, index) => {
+        const title = section.querySelector('.sub-title');
+        if (!title) return;
+        if (!section.id) {
+          section.id = `${modelId}-part-${index + 1}`;
+        }
+        const link = document.createElement('a');
+        link.href = `#${section.id}`;
+        link.textContent = title.textContent.trim();
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        modelTocLinks.appendChild(link);
+      });
+    }
+
+    function typesetVisibleModel() {
+      if (window.MathJax && typeof window.MathJax.typesetPromise === 'function') {
+        const visibleSections = modelSections.filter((section) => !section.hidden);
+        window.MathJax.typesetPromise(visibleSections).catch(() => {});
+      }
+    }
+
+    function showDirectory(updateHash = true) {
+      sheet.classList.remove('model-open');
+      modelDirectory.hidden = false;
+      modelNav.hidden = true;
+      modelToc.hidden = true;
+
+      modelButtons.forEach((button) => button.classList.remove('active'));
+      modelSections.forEach((section) => {
+        section.hidden = true;
+      });
+
+      if (updateHash) {
+        history.replaceState(null, '', location.pathname);
+      }
+
+      modelDirectory.scrollIntoView({
+        behavior: updateHash ? 'smooth' : 'auto',
+        block: 'start'
+      });
+    }
+
+    function showModel(modelId, updateHash = true) {
+      const safeModelId = modelIds.includes(modelId) ? modelId : modelIds[0];
+
+      sheet.classList.add('model-open');
+      modelDirectory.hidden = true;
+      modelNav.hidden = false;
+      modelToc.hidden = false;
+
+      modelButtons.forEach((button) => {
+        button.classList.toggle('active', button.dataset.modelTarget === safeModelId);
+      });
+
+      modelSections.forEach((section) => {
+        section.hidden = section.dataset.model !== safeModelId;
+      });
+
+      if (updateHash) {
+        history.replaceState(null, '', `#${safeModelId}`);
+      }
+
+      buildModelToc(safeModelId);
+
+      modelNav.scrollIntoView({
+        behavior: updateHash ? 'smooth' : 'auto',
+        block: 'start'
+      });
+
+      typesetVisibleModel();
+    }
+
+    modelButtons.forEach((button) => {
+      button.addEventListener('click', () => showModel(button.dataset.modelTarget));
+    });
+
+    modelCards.forEach((button) => {
+      button.addEventListener('click', () => showModel(button.dataset.modelCard));
+    });
+
+    backToModels.addEventListener('click', () => showDirectory());
+
+    const initialModel = location.hash.replace('#', '');
+    if (modelIds.includes(initialModel)) {
+      showModel(initialModel, false);
+    } else {
+      showDirectory(false);
+    }
+  </script>
 </body>
 </html>

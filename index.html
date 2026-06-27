@@ -294,6 +294,56 @@
       line-height: 1.45;
     }
 
+    .subnav {
+      grid-column: 1 / -1;
+      display: grid;
+      gap: 2px;
+      margin: 4px 0 2px 34px;
+      padding-left: 10px;
+      border-left: 1px solid var(--line);
+    }
+
+    .subnav[hidden] {
+      display: none;
+    }
+
+    .subnav-button {
+      width: 100%;
+      min-height: 34px;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--muted);
+      padding: 6px 8px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .subnav-button:hover {
+      background: #f0f2f5;
+      color: #253041;
+    }
+
+    .subnav-button.active {
+      background: #eef7f3;
+      color: #183f36;
+      font-weight: 800;
+    }
+
+    .subnav-kicker {
+      display: block;
+      color: var(--subtle);
+      font-size: 11px;
+      line-height: 1.25;
+    }
+
+    .subnav-title {
+      display: block;
+      margin-top: 1px;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
     .sidebar-note {
       margin: 18px 8px 0;
       padding: 10px 0 0;
@@ -671,6 +721,13 @@
         display: none;
       }
 
+      .subnav {
+        margin: 8px 0 0;
+        padding-left: 0;
+        border-left: 0;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .content-wrap,
       .app-shell.expanded .content-wrap {
         width: calc(100% - 24px);
@@ -711,6 +768,10 @@
 
     @media (max-width: 560px) {
       .nav-list {
+        grid-template-columns: 1fr;
+      }
+
+      .subnav {
         grid-template-columns: 1fr;
       }
 
@@ -793,6 +854,28 @@
               <span class="nav-desc">模型设定、Stata 命令和系数解释</span>
             </span>
           </button>
+          <div class="subnav" id="empiricalSubnav" hidden>
+            <button class="subnav-button" type="button" data-view="empirical" data-model="model-1">
+              <span class="subnav-kicker">模型一</span>
+              <span class="subnav-title">基准面板模型</span>
+            </button>
+            <button class="subnav-button" type="button" data-view="empirical" data-model="model-2">
+              <span class="subnav-kicker">模型二</span>
+              <span class="subnav-title">GMM 动态面板模型</span>
+            </button>
+            <button class="subnav-button" type="button" data-view="empirical" data-model="model-3">
+              <span class="subnav-kicker">模型三</span>
+              <span class="subnav-title">面板门限模型</span>
+            </button>
+            <button class="subnav-button" type="button" data-view="empirical" data-model="model-4">
+              <span class="subnav-kicker">模型四</span>
+              <span class="subnav-title">面板分位数模型</span>
+            </button>
+            <button class="subnav-button" type="button" data-view="empirical" data-model="model-5">
+              <span class="subnav-kicker">模型五</span>
+              <span class="subnav-title">空间面板模型</span>
+            </button>
+          </div>
         </nav>
       </div>
 
@@ -959,8 +1042,33 @@
       }
     };
 
+    const empiricalModels = {
+      'model-1': {
+        title: '模型一：基准面板模型',
+        src: 'empirical.html#model-1'
+      },
+      'model-2': {
+        title: '模型二：GMM 动态面板模型',
+        src: 'empirical.html#model-2'
+      },
+      'model-3': {
+        title: '模型三：面板门限模型',
+        src: 'empirical.html#model-3'
+      },
+      'model-4': {
+        title: '模型四：面板分位数模型',
+        src: 'empirical.html#model-4'
+      },
+      'model-5': {
+        title: '模型五：空间面板模型',
+        src: 'empirical.html#model-5'
+      }
+    };
+
     const appShell = document.getElementById('appShell');
     const navButtons = Array.from(document.querySelectorAll('.nav-button'));
+    const empiricalSubnav = document.getElementById('empiricalSubnav');
+    const empiricalButtons = Array.from(document.querySelectorAll('.subnav-button[data-model]'));
     const outlineView = document.getElementById('outlineView');
     const outlineToc = document.getElementById('outlineToc');
     const frameView = document.getElementById('frameView');
@@ -969,15 +1077,35 @@
     const standalone = document.getElementById('openStandalone');
     const toggleExpand = document.getElementById('toggleExpand');
 
-    function setView(key, updateHash = true) {
+    function setEmpiricalActive(modelKey) {
+      empiricalButtons.forEach((button) => {
+        button.classList.toggle('active', button.dataset.model === modelKey);
+      });
+    }
+
+    function scrollContentIntoView() {
+      if (!window.matchMedia('(max-width: 860px)').matches) return;
+      requestAnimationFrame(() => {
+        document.querySelector('.main-area').scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      });
+    }
+
+    function setView(key, updateHash = true, modelKey = '') {
       const viewKey = views[key] ? key : 'outline';
       const view = views[viewKey];
+      const selectedModel = empiricalModels[modelKey] ? modelKey : '';
+      const empiricalModel = selectedModel ? empiricalModels[selectedModel] : null;
 
       navButtons.forEach((button) => {
         button.classList.toggle('active', button.dataset.view === viewKey);
       });
 
-      contentTitle.textContent = view.title;
+      empiricalSubnav.hidden = viewKey !== 'empirical';
+      setEmpiricalActive(viewKey === 'empirical' ? selectedModel : '');
+      contentTitle.textContent = viewKey === 'empirical' && empiricalModel ? empiricalModel.title : view.title;
 
       if (viewKey === 'outline') {
         outlineView.classList.add('active');
@@ -989,20 +1117,27 @@
         outlineView.classList.remove('active');
         outlineToc.hidden = true;
         frameView.classList.add('active');
-        if (frame.getAttribute('src') !== view.src) {
-          frame.src = view.src;
+        const targetSrc = viewKey === 'empirical' && empiricalModel ? empiricalModel.src : view.src;
+        if (frame.getAttribute('src') !== targetSrc) {
+          frame.src = targetSrc;
         }
-        standalone.href = view.src;
+        standalone.href = targetSrc;
         standalone.hidden = false;
       }
 
       if (updateHash) {
-        history.replaceState(null, '', viewKey === 'outline' ? location.pathname : `#${viewKey}`);
+        const hash = viewKey === 'empirical' && selectedModel ? `#empirical-${selectedModel}` : `#${viewKey}`;
+        history.replaceState(null, '', viewKey === 'outline' ? location.pathname : hash);
+        scrollContentIntoView();
       }
     }
 
     navButtons.forEach((button) => {
       button.addEventListener('click', () => setView(button.dataset.view));
+    });
+
+    empiricalButtons.forEach((button) => {
+      button.addEventListener('click', () => setView('empirical', true, button.dataset.model));
     });
 
     toggleExpand.addEventListener('click', () => {
@@ -1011,7 +1146,12 @@
     });
 
     const initial = location.hash.replace('#', '');
-    setView(views[initial] ? initial : 'outline', false);
+    const empiricalMatch = initial.match(/^empirical-(model-\d)$/);
+    if (empiricalMatch) {
+      setView('empirical', false, empiricalMatch[1]);
+    } else {
+      setView(views[initial] ? initial : 'outline', false);
+    }
   </script>
 </body>
 </html>
